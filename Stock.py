@@ -17,7 +17,7 @@ class Stock:
             res = requests.get("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={}&outputsize=full&apikey={}".format(self.symbol, keys.alphavantageKey)).json()
             dates = res["Time Series (Daily)"]
         except:
-            sys.exit(res)
+            raise Exception("Could not get {} prices".format(self.symbol))
         closingPrices = []
         self.firstDate = list(dates.keys())[-1]
         self.lastDate = list(dates.keys())[0]
@@ -29,11 +29,16 @@ class Stock:
 
     def findRegressionValues(self):
         values = exponentialRegression(self.closingPrices)
-        self.scalar = values["scalar"]
-        self.base = values["base"]
-        self.annualReturn = values["annualReturn"]
-        self.rSquared = values["rSquared"]
-        self.equation = values["equation"]
+        self.full = values
 
     def getRow(self):
-        return (self.symbol, self.company, self.sector, self.industry, self.equation, self.annualReturn, self.rSquared, self.firstDate, self.lastDate)
+        return (self.symbol, self.company, self.sector, self.industry, self.full["equation"], self.full["annualReturn"], self.full["rSquared"], self.firstDate, self.lastDate)
+
+    def getDict(self):
+        return {
+            "symbol": self.symbol,
+            "company": self.company,
+            "sector": self.sector,
+            "industry": self.industry,
+            "full": self.full
+        }
