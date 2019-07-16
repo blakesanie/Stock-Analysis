@@ -12,12 +12,14 @@ class Stock:
         self.symbol = self.symbol.rstrip()
 
     def findClosingPrices(self):
-        # self.closingPrices = [2,3,4,6,8,12,18]
+        url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={}&outputsize=full&apikey={}".format(self.symbol.replace(".","%2E"), keys.alphavantageKey)
         try:
-            res = requests.get("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={}&outputsize=full&apikey={}".format(self.symbol, keys.alphavantageKey)).json()
+            res = requests.get(url).json()
             dates = res["Time Series (Daily)"]
         except:
-            raise Exception("Could not get {} prices".format(self.symbol))
+            if "Note" in res.keys():
+                raise Exception("no more api calls")
+            raise Exception(res)
         closingPrices = []
         self.firstDate = list(dates.keys())[-1]
         self.lastDate = list(dates.keys())[0]
@@ -27,12 +29,16 @@ class Stock:
         print("{} prices obtained".format(self.symbol))
         time.sleep(12)
 
-    def findRegressionValues(self):
-        values = exponentialRegression(self.closingPrices)
-        self.full = values
+    def findRegressionValues(self): # 252 trading days each year
+        self.full = exponentialRegression(self.closingPrices)
+        self.last20 = exponentialRegression(self.closingPrices[-5040:])
+        self.last10 = exponentialRegression(self.closingPrices[-2520:])
+        self.last5 = exponentialRegression(self.closingPrices[-1260:])
+        self.last1 = exponentialRegression(self.closingPrices[-252:])
+        self.last6Months = exponentialRegression(self.closingPrices[-126:])
 
     def getRow(self):
-        return (self.symbol, self.company, self.sector, self.industry, self.full["equation"], self.full["annualReturn"], self.full["rSquared"], self.firstDate, self.lastDate)
+        return (self.symbol, self.company, self.sector, self.industry, self.full["roi"], self.last20["roi"], self.last10["roi"], self.last5["roi"],self.last1["roi"], self.last6Months["roi"],  self.full["r2"], self.last20["r2"], self.last10["r2"], self.last5["r2"], self.last1["r2"], self.last6Months["r2"], self.firstDate, self.lastDate)
 
     def getDict(self):
         return {
@@ -40,5 +46,12 @@ class Stock:
             "company": self.company,
             "sector": self.sector,
             "industry": self.industry,
-            "full": self.full
+            "max": self.full,
+            "20y": self.last20,
+            "10y": self.last10,
+            "5y": self.last5,
+            "12m": self.last1,
+            "6m": self.last6Months,
+            "firstDate": self.firstDate,
+            "lastDate": self.lastDate
         }
