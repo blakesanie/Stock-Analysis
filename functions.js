@@ -49,34 +49,15 @@ function renderRows() {
         round(1 + stock[timeSpan].roi / 100, 1000) +
         ")<sup>x</sup>" +
         "</td><td>" +
-        // getChartWidget(stock.symbol) +
+        // some chart will go here
         "</td></tr>"
     );
   }
 }
 
-function round(num, offset) {
-  return Math.round(num * offset) / offset;
+function round(num, precision) {
+  return Math.round(num * offset) / precision;
 }
-
-// function formatRegressionLine(str) {
-//   var firstNum = parseFloat(str.substring(4, str.indexOf("*") - 1));
-//   var secondNum = parseFloat(
-//     str.substring(str.indexOf("*") + 2, str.indexOf("^"))
-//   );
-//   var thirdNum = parseFloat(str.substring(str.indexOf("+") + 2));
-//   console.log(firstNum, secondNum, thirdNum);
-//   return (
-//     "y = " +
-//     round(firstNum, 100) +
-//     "(" +
-//     round(secondNum, 100000) +
-//     ")" +
-//     "<sup>x</sup>" +
-//     " + " +
-//     thirdNum
-//   );
-// }
 
 function getChartWidget(symbol) {
   return (
@@ -94,32 +75,11 @@ $(".selectable").click(function() {
     .toLowerCase()
     .trim();
   renderRows();
-  // $grid.isotope({ sortBy: "r2" });
 });
 
-// var $grid = $("tbody").isotope({
-//   itemSelector: "tr",
-//   // layoutMode: "fitRows",
-//   sortAscending: false,
-//   getSortData: {
-//     // symbol: ".symbol",
-//     // company: ".company",
-//     // // "avg. roi": "tr > .roi parseFloat",
-//     r2: function(itemElem) {
-//       var val = $(itemElem)
-//         .find(".r2")
-//         .text();
-//       return parseFloat(val);
-//     }
-//   }
-//
-
 $("h4").click(function() {
-  console.log("got here 1");
   $("h4").removeClass("selected");
-  console.log("got here 2");
   $(this).addClass("selected");
-  console.log("got here 3");
   timeSpan = $(this)
     .text()
     .toLowerCase();
