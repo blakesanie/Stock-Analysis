@@ -1,9 +1,10 @@
 # Keys
 keys.py
 
-# Spreadsheets
+# outputs
 *.xlsx
 *.csv
+*.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
