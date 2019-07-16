@@ -8,14 +8,14 @@ def exponentialRegression(closing):
     model = LinearRegression()
     model.fit(x, y_ln)
     scalar = np.exp(model.intercept_) * closing[0]
-    base = np.exp(model.coef_)[0]
-    annualReturn = (np.power(np.exp(model.coef_)[0], 365.25) - 1) * 100
-    equation = "y = {} * {}^x + {}".format(scalar, base, closing[0])
+    base = np.power(np.exp(model.coef_)[0], 252)
+    # annualReturn = (base - 1) * 100
+    # equation = "y = {}({})^x".format(scalar, base,)
     rSquared = model.score(x, y_ln)
     return {
         "scalar": scalar,
-        "base": base,
-        "annualReturn": annualReturn,
-        "equation": equation,
-        "rSquared": rSquared
+        "roi": (base - 1) * 100,
+        # "annualReturn": annualReturn,
+        # "equation": equation,
+        "r2": rSquared
     }
