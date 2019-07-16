@@ -8,9 +8,14 @@
         <meta name="keywords" content="keywords,here">
         <link rel="stylesheet" href="styles.css" type="text/css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <!-- <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script> -->
     </head>
     <body>
         <div id="landing">
+            <div id="siteInfo">
+                <a href="http://www.blakesanie.com" target="_blank">Who's Blake Sanie?</a>
+                <a href="http://www.blakesanie.com" target="_blank">What's this?</a>
+            </div>
             <div id="banner"></div>
             <div id="card">
                 <!-- <svg viewbox="0 0 100 100"> <circle cx="0" cy="0" r="2" fill="green"/> </svg> -->
@@ -25,7 +30,6 @@
                 <div class="dot red" style="left: 80%; top: 65%"></div>
                 <div class="dot red" style="left: 90%; top: 60%"></div>
                 <div class="dot red" style="left: 100%; top: 55%"></div>
-
                 <div class="dot green" style="left: 0%; top: 92%"></div>
                 <div class="dot green" style="left: 10%; top: 83%"></div>
                 <div class="dot green" style="left: 20%; top: 92%"></div>
@@ -44,79 +48,35 @@
                 <p class="equation">y = 1.07(1.05)<sup>x</sup><br>r<sup>2</sup>
                     = 0.97</p>
             </div>
-            <h1>Regression-Based Stock Analysis</h1>
+            <h1>Regression-Based Stock Analysis<br>
+                <sub>By Blake Sanie</sub>
+            </h1>
+        </div>
+        <div id="segments">
+            <h4 class="selected">Max</h4>
+            <h4>20y</h4>
+            <h4>10y</h4>
+            <h4>5y</h4>
+            <h4>12m</h4>
+            <h4>6m</h4>
         </div>
         <div id="container">
             <table cellspacing="0">
                 <thead>
                     <tr>
-                        <th></th>
-                        <th>Company</th>
-                        <th>avg. ROI</th>
-                        <th>R^2</th>
+                        <th class="selectable">Symbol</th>
+                        <th class="selectable selected">Company</th>
+                        <th class="selectable">ROI</th>
+                        <th class="selectable">r<sup>2</sup>
+                        </th>
                         <th>Regression</th>
                         <th>Chart</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr id="firstRow">
-                        <th>ABC</th>
-                        <td>something</td>
-                        <td>something</td>
-                        <td>something</td>
-                        <td>something</td>
-                        <td>something</td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <th>ABC</th>
-                        <td>something</td>
-                        <td>something</td>
-                        <td>something</td>
-                        <td>something</td>
-                        <td>something</td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <th>ABC</th>
-                        <td>something</td>
-                        <td>something</td>
-                        <td>something</td>
-                        <td>something</td>
-                        <td>something</td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <th>ABC</th>
-                        <td>something</td>
-                        <td>something</td>
-                        <td>something</td>
-                        <td>something</td>
-                        <td>something</td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <th>ABC</th>
-                        <td>something</td>
-                        <td>something</td>
-                        <td>something</td>
-                        <td>something</td>
-                        <td>something</td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr id="lastRow">
-                        <th>ABC</th>
-                        <td>something</td>
-                        <td>something</td>
-                        <td>something</td>
-                        <td>something</td>
-                        <td>something</td>
-                    </tr>
+                    <!-- <tr id="firstRow"> <th>ABC</th> <td>something</td> <td>something</td> <td>something</td> <td>something</td> <td>something</td> </tr> <tr> <th>ABC</th> <td>something</td> <td>something</td> <td>something</td> <td>something</td> <td>something</td>
+                    </tr> <tr> <th>ABC</th> <td>something</td> <td>something</td> <td>something</td> <td>something</td> <td>something</td> </tr> <tr> <th>ABC</th> <td>something</td> <td>something</td> <td>something</td> <td>something</td> <td>something</td> </tr> <tr>
+                    <th>ABC</th> <td>something</td> <td>something</td> <td>something</td> <td>something</td> <td>something</td> </tr> <tr id="lastRow"> <th>ABC</th> <td>something</td> <td>something</td> <td>something</td> <td>something</td> <td>something</td> </tr> -->
                 </tbody>
             </table>
         </div>
