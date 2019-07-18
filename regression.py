@@ -14,7 +14,7 @@ def exponentialRegression(closing):
     rSquared = model.score(x, y_ln)
     return {
         "scalar": scalar,
-        "roi": (base - 1) * 100,
+        "roi": ((base - 1) * 100),
         # "annualReturn": annualReturn,
         # "equation": equation,
         "r2": rSquared

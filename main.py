@@ -4,7 +4,7 @@ import csv
 import os
 import json
 
-companies = symbols.get_sp500_symbols()#[0:5]
+companies = symbols.get_sp500_symbols()
 print(len(companies))
 
 stockDicts = []
@@ -23,6 +23,7 @@ with open('SP500StockData.csv', 'w') as csvOut:
             else:
                 break
         stock.findRegressionValues()
+        stock.generatePlot()
         writer.writerow(stock.getRow())
         stockDicts.append(stock.getDict())
 
