@@ -1,8 +1,10 @@
 import sys
 from regression import exponentialRegression
+import matplotlib.pyplot as plt
 import time
 import requests
 import keys
+import numpy as np
 
 class Stock:
 
@@ -36,6 +38,31 @@ class Stock:
         self.last5 = exponentialRegression(self.closingPrices[-1260:])
         self.last1 = exponentialRegression(self.closingPrices[-252:])
         self.last6Months = exponentialRegression(self.closingPrices[-126:])
+
+    def generatePlot(self):
+        self.renderAndSavePlot(0, self.full, "max") # special case
+        self.renderAndSavePlot(5040, self.last20, "20y")
+        self.renderAndSavePlot(2520, self.last10, "10y")
+        self.renderAndSavePlot(1260, self.last5, "5y")
+        self.renderAndSavePlot(252, self.last1, "12m")
+        self.renderAndSavePlot(126, self.last6Months, "6m")
+
+    def renderAndSavePlot(self, size, timeSeries, name):
+        prices = self.closingPrices[(-1 * size):]
+        if size == 0:
+            prices = self.closingPrices
+        fig= plt.figure(figsize=(2.8,1.3))
+        plt.plot(prices, linewidth=1)
+        x = np.arange(len(prices))
+        y = np.multiply(np.power((timeSeries["roi"] / 100 + 1), (x / 252)), timeSeries["scalar"])
+        plt.plot(y)
+        plt.xticks([])
+        plt.yticks([])
+        plt.box(on=None)
+        plt.savefig('images/{}_{}.png'.format(self.symbol.lower(), name), transparent = False, bbox_inches = 'tight', pad_inches = 0)
+        plt.clf()
+        plt.cla()
+        plt.close()
 
     def getRow(self):
         return (self.symbol, self.company, self.sector, self.industry, self.full["roi"], self.last20["roi"], self.last10["roi"], self.last5["roi"],self.last1["roi"], self.last6Months["roi"],  self.full["r2"], self.last20["r2"], self.last10["r2"], self.last5["r2"], self.last1["r2"], self.last6Months["r2"], self.firstDate, self.lastDate)
