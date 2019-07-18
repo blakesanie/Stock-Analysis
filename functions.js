@@ -49,7 +49,7 @@ function renderRows() {
         round(1 + stock[timeSpan].roi / 100, 1000) +
         ")<sup>x</sup>" +
         "</td><td class='imgHolder'><img src='./images/" +
-        stock.symbol +
+        stock.symbol.toLowerCase() +
         "_" +
         timeSpan +
         ".png'></img></td></tr>"
