@@ -3,7 +3,7 @@ sortBy = "noSort";
 var data;
 
 $.ajax({
-  url: "./data_full.json",
+  url: "./data/data.json",
   success: function(result) {
     data = result;
     renderRows();
@@ -48,23 +48,17 @@ function renderRows() {
         "(" +
         round(1 + stock[timeSpan].roi / 100, 1000) +
         ")<sup>x</sup>" +
-        "</td><td>" +
-        // some chart will go here
-        "</td></tr>"
+        "</td><td class='imgHolder'><img src='./images/" +
+        stock.symbol +
+        "_" +
+        timeSpan +
+        ".png'></img></td></tr>"
     );
   }
 }
 
-function round(num, precision) {
-  return Math.round(num * offset) / precision;
-}
-
-function getChartWidget(symbol) {
-  return (
-    '<div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/FX-EURUSD/" rel="noopener" target="_blank"><span class="blue-text">EURUSD Rates</span></a> by TradingView</div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>{"symbol": ' +
-    symbol +
-    ',"width": 350,"height": 220,"locale": "en","dateRange": "12m","colorTheme": "light","trendLineColor": "#37a6ef","underLineColor": "#e3f2fd","isTransparent": false,"autosize": false,"largeChartUrl": ""}</script></div>'
-  );
+function round(num, offset) {
+  return Math.round(num * offset) / offset;
 }
 
 $(".selectable").click(function() {
