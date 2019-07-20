@@ -35,7 +35,7 @@ function renderRows() {
     $("tbody").append(
       "<tr " +
         id +
-        "><th class='symbols'>" +
+        "><th class='symbol'>" +
         stock.symbol +
         "</th><td class='company'>" +
         stock.company +
@@ -81,4 +81,48 @@ $("h4").click(function() {
     sortBy = "noSort";
   }
   renderRows();
+});
+
+$("body").on("click", "img", function() {
+  var symbol = $(this)
+    .closest("tr")
+    .find("th")
+    .text();
+  new TradingView.widget({
+    autosize: true,
+    symbol: symbol,
+    interval: "D",
+    timezone: "Etc/UTC",
+    theme: "Light",
+    style: "1",
+    locale: "en",
+    toolbar_bg: "#f1f3f6",
+    enable_publishing: false,
+    allow_symbol_change: true,
+    save_image: false,
+    no_referral_id: true,
+    container_id: "tradingview_ac965"
+  });
+  $("body, html").animate(
+    {
+      scrollTop: $(document).height()
+    },
+    1000
+  );
+});
+
+new TradingView.widget({
+  autosize: true,
+  symbol: "INX",
+  interval: "D",
+  timezone: "Etc/UTC",
+  theme: "Light",
+  style: "1",
+  locale: "en",
+  toolbar_bg: "#f1f3f6",
+  enable_publishing: false,
+  allow_symbol_change: true,
+  save_image: false,
+  no_referral_id: true,
+  container_id: "tradingview_ac965"
 });

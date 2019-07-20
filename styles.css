@@ -3,7 +3,6 @@
 * {
   margin: 0;
   padding: 0;
-  position: relative;
   font-family: "Quicksand", sans-serif;
   font-weight: 300;
   box-sizing: border-box;
@@ -146,6 +145,15 @@ sup {
   font-weight: inherit;
 }
 
+h2 {
+  font-size: 20px;
+  line-height: 30px;
+  width: 100%;
+  margin: 100px auto 0 auto;
+  padding: 0 100px;
+  text-align: center;
+}
+
 #segments {
   display: flex;
   flex-direction: row;
@@ -174,8 +182,8 @@ h4:not(.selected):hover {
 }
 
 #container {
-  width: calc(100% - 200px);
-  height: calc(100vh - 200px);
+  max-width: calc(100% - 100px);
+  height: calc(100vh - 0px);
   min-height: 500px;
   overflow: scroll;
   margin-top: 50px;
@@ -183,6 +191,7 @@ h4:not(.selected):hover {
 
 table {
   margin: 0 auto;
+  border-collapse: collapse;
 }
 
 th,
@@ -235,7 +244,7 @@ tbody th {
 }
 
 td {
-  border: 0.5px solid #ccc;
+  border: 1px solid #ccc;
 }
 
 td:first-of-type {
@@ -260,4 +269,36 @@ td:last-of-type {
 
 img {
   width: 130px;
+}
+
+.tradingview-widget-container {
+  margin-top: 50px;
+}
+
+iframe {
+  min-width: calc(100vw - 100px);
+  height: 50vh;
+  min-height: 300px;
+}
+
+#footer {
+  margin-top: 50px;
+  padding: 20px 50px;
+  width: 100%;
+  background-color: black;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#footer a {
+  color: #777 !important;
+  padding: 10px 20px;
+  text-align: center;
+  transition: color 0.3s ease;
+}
+
+#footer a:hover {
+  color: white !important;
 }
